@@ -17,7 +17,9 @@
 [[Github Pages](https://github.com/Alex-EDG/HW_ahj_sse-ws_Chat_Frontend)]
 
 ---
-## Чат: Backend [[Чат: Server] (https://hw-ahj-sse-ws-chat-backend.onrender.com)]
+## Чат: Backend
+
+[Чат: Server](https://hw-ahj-sse-ws-chat-backend.onrender.com)
 
 ## Чат: Frontend
 
