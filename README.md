@@ -11,7 +11,10 @@
 
 ---
 
-[![Build status](https://ci.appveyor.com/api/projects/status/62xjlvhq4vjvlyrj?svg=true)](https://ci.appveyor.com/project/Alex-EDG/hw-ahj-sse-ws-chat-frontend) [[Github Pages](https://github.com/Alex-EDG/HW_ahj_sse-ws_Chat_Frontend)]
+[![Build status](https://ci.appveyor.com/api/projects/status/4qp55ow0mxs085u0?svg=true)](https://ci.appveyor.com/project/Alex-EDG/hw-ahj-sse-ws-chat-frontend)
+
+
+[[Github Pages](https://github.com/Alex-EDG/HW_ahj_sse-ws_Chat_Frontend)]
 
 ---
 ## Чат: Backend [[Чат: Server] (https://hw-ahj-sse-ws-chat-backend.onrender.com)]
