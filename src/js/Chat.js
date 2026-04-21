@@ -7,7 +7,6 @@ export default class Chat {
     this.activeId = null;
     this.name = null;
     this.active = null;
-    // this.ws = new WebSocket(serverURL.replace('https', 'wss'));
     const options = {
       WebSocket: WS, // custom WebSocket constructor
       connectionTimeout: 1000,
@@ -184,14 +183,6 @@ export default class Chat {
 
     this.ws.removeEventListener('message', messageHandler);
     this.ws.addEventListener('message', messageHandler);
-    // this.ws.removeEventListener('message', this.messageHandler(event));
-    // this.ws.addEventListener('message', this.messageHandler(event));
-    // this.ws.addEventListener('message', (event) => {
-    //   const msg = JSON.parse(event.data);
-    //   Chat.clearChat();
-    //   this.showUserList(msg.message);
-    //   this.sortMessages();
-    // });
   }
 
   static formatDate(date) {
