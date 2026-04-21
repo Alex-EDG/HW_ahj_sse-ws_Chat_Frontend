@@ -1,10 +1,19 @@
+import ReconnectingWebSocket from 'reconnectingwebsocket';
+import WS from 'ws';
+
 export default class Chat {
   constructor(parentEl, serverURL) {
     this.parentEl = parentEl;
     this.activeId = null;
     this.name = null;
     this.active = null;
-    this.ws = new WebSocket(serverURL.replace('https', 'wss'));
+    // this.ws = new WebSocket(serverURL.replace('https', 'wss'));
+    const options = {
+      WebSocket: WS, // custom WebSocket constructor
+      connectionTimeout: 1000,
+      maxRetries: 10,
+    };
+    this.ws = new ReconnectingWebSocket(serverURL.replace('https', 'wss'), [], options);
     this.idIvan = null;
   }
 
@@ -38,13 +47,22 @@ export default class Chat {
         this.ws.send(data);
       }
 
-      this.ws.addEventListener('message', (evt) => {
+      const messageHandler = (evt) => {
         const msg = JSON.parse(evt.data);
         Chat.clearChat();
         this.showUserList(msg.message);
         this.sortMessages();
-      });
+      };
+      this.ws.removeEventListener('message', messageHandler);
+      this.ws.addEventListener('message', messageHandler);
     }
+  }
+
+  messageHandler(event) {
+    const msg = JSON.parse(event.data);
+    Chat.clearChat();
+    this.showUserList(msg.message);
+    this.sortMessages();
   }
 
   createChat(event) {
@@ -75,7 +93,7 @@ export default class Chat {
       let checked;
       let nickName;
 
-      if (status === true || status === true) {
+      if (status === true || status === 'true') {
         checked = 'check';
       } else {
         checked = '';
@@ -157,12 +175,23 @@ export default class Chat {
       this.ws.send(data);
     }
 
-    this.ws.addEventListener('message', (event) => {
-      const msg = JSON.parse(event.data);
+    const messageHandler = (evt) => {
+      const msg = JSON.parse(evt.data);
       Chat.clearChat();
       this.showUserList(msg.message);
       this.sortMessages();
-    });
+    };
+
+    this.ws.removeEventListener('message', messageHandler);
+    this.ws.addEventListener('message', messageHandler);
+    // this.ws.removeEventListener('message', this.messageHandler(event));
+    // this.ws.addEventListener('message', this.messageHandler(event));
+    // this.ws.addEventListener('message', (event) => {
+    //   const msg = JSON.parse(event.data);
+    //   Chat.clearChat();
+    //   this.showUserList(msg.message);
+    //   this.sortMessages();
+    // });
   }
 
   static formatDate(date) {

@@ -44,6 +44,8 @@
   "dependencies": {
     "@yarnpkg/pnpify": "^3.0.1-rc.9",
     "core-js": "^3.18.3",
-    "push-dir": "^0.4.1"
+    "push-dir": "^0.4.1",
+    "reconnectingwebsocket": "^1.0.0",
+    "ws": "^8.20.0"
   }
 }
